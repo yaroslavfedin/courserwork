@@ -71,12 +71,12 @@ Menu::Menu() {
 	text_time.setPosition(945, 150);
 	zero.Zero;
 
-	text_images.setString("");
+	text_images.setString(config);
 	text_images.setCharacterSize(35);
 	text_images.setFont(font);
 	text_images.setPosition(400, 400);
 
-	text_enter.setString("¬ведите номер набора текстур, далее нажмите Enter");
+	text_enter.setString("Please input number of texture pack and press Enter");
 	text_enter.setCharacterSize(25);
 	text_enter.setFont(font);
 	text_enter.setPosition(300, 370);
