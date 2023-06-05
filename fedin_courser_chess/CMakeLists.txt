@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(ChessGame)
 
 # Установка переменной пути к cmake файлам SFML
-set(SFML_DIR "C:/Programs/vcpkg/installed/x64-windows/share/sfml")
+set(SFML_DIR "Your path to vcpkg/installed/x64-windows/share/sfml")
 
 # Добавление исполняемого файла
 add_executable(ChessGame main.cpp)
