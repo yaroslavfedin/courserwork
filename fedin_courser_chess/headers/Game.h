@@ -118,6 +118,12 @@ void Game::ProcessEvents(Vector2i pos) {
 				if (8.6 * scaleX <= pos.x && 11.4 * scaleX >= pos.x && pos.y >= 2.8 * scaleY && pos.y <= 3.55 * scaleY) {
 					rezTime = 1;
 					z--;
+					figures.SetWKFM(0);
+					figures.SetRWRM(0);
+					figures.SetLWRM(0);
+					figures.SetBKFM(0);
+					figures.SetRBRM(0);
+					figures.SetLBRM(0);
 					time.beatBoard.clear();
 					for (int i = 0; i != LENGTH; i++) {
 						for (int j = 0; j != LENGTH; j++) {
