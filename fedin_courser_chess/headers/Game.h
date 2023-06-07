@@ -3,7 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "GamePiece.h"
 #include "Menu.h"
-
+#include <iostream>
 using namespace sf;
 class Game {
 public:
@@ -18,7 +18,6 @@ private:
 	Menu time;
 	const int size = 100; // размер поля 100 * 100
 	int x, y;
-	float dx = 0, dy = 0; // оцентрить изображение
 	int noMovedPiece = 0;
 	int turn = -1; // -1 - ходят белые, 1 ходят черные
 	sf::Sprite MoveImages;
@@ -33,6 +32,7 @@ private:
 	int transWX, transWY, transBX, transBY;
 
 	int scaleX = 100, scaleY = 100;
+	sf::Vector2f spritePos;
 };
 
 Game::Game()
@@ -72,6 +72,7 @@ void Game::GameRun() {
 		Vector2i pos = Mouse::getPosition(window);
 		x = pos.x / scaleX;
 		y = pos.y / scaleY;
+		spritePos = window.mapPixelToCoords(pos);
 		ProcessEvents(pos);
 		Render(pos);
 	}
@@ -188,8 +189,6 @@ void Game::ProcessEvents(Vector2i pos) {
 					}
 				}
 				if (board.board[y][x] != 0 && time.isPausePressed == 1) {
-					dx = float(pos.x - x * 100);
-					dy = float(pos.y - y * 100);
 					if (board.board[y][x] == PawnBlack && turn == 1) {
 						noMovedPiece = PawnBlack;
 						MoveImages = board.figures[1];
@@ -490,7 +489,7 @@ void Game::Render(Vector2i pos) {
 		window.draw(board.figures[0]);
 		board.Drawing(window);
 		if (move == 1) {
-			MoveImages.setPosition(pos.x - dx, pos.y - dy);
+			MoveImages.setPosition(spritePos.x - 50, spritePos.y - 50);
 			window.draw(MoveImages);
 		}
 		if (transformBlack) {
