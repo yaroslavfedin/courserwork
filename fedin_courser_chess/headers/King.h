@@ -6,28 +6,78 @@
 #include "Knight.h"
 
 
-
+/**
+* @detailed класс Короля
+* Класс для реализации методов проверки Короля. В классе присутствует следующие методы:нахождения координат короля 
+* на поле, определения легальности хода, установки и получения флагов для реализации рокировки.
+*/
 class King { 
 public:
+	/**
+* @brief Метод проверяющий не делает ли белый король шах черному 
+* @param ox oy позиция белого короля
+* @param kingx kingy - позиция черного короля
+* @param int(&board)[8][8] игровая доска
+* @return 1 - если шах, 0 - в противном случае
+*/
 	int KingWSah(int ox, int oy, int kingx, int kingy, int(&board)[8][8]);
-
+	/**
+* @brief Метод проверки на шах белого короля
+* @detailed Метод пробегается по всем фигурам соперника и проверяет не делают ли они шах королю в текущем местоположении на доске
+* @param posKingX posKingY - позиции белого короля
+* @param int(&board)[8][8] игровая доска
+* @return 1 - если нет шаха, 0 - в противном случае
+*/
 	int KingWhiteSahCheck(int posKingX, int posKingY, int (&board)[8][8]);
-
+	/**
+* @brief Метод проверки хода белого короля на легальность + проверка возможности рокировки
+* @param ox oy старые позиции короля
+* @param nx ny новые позиции короля
+* @param int(&board)[8][8] игровая доска
+* @return 1 - если ход легален, 0 - в противном случае
+*/
 	int KingW(int ox, int oy, int nx, int ny, int(&board)[8][8]);
-
+	/**
+* @brief Метод нахождения короля на поле и установки его координат в переменные kingWX, kingWY
+* @param int(&board)[8][8] игровая доска
+* @return 1 - если ход легален, 0 - в противном случае
+*/
 	void pozKingWhite (int(&board)[8][8]);
 
-	int mateWhiteCheck(int posKingX, int posKingY, int(&board)[8][8]);
+	//int mateWhiteCheck(int posKingX, int posKingY, int(&board)[8][8]);
 
+	/**
+* @brief Метод проверяющий не делает ли черный король шах белому
+* @param ox oy позиция черного короля
+* @param kingx kingy - позиция белого короля
+* @param int(&board)[8][8] игровая доска
+* @return 1 - если шах, 0 - в противном случае
+*/
 	int KingBSah(int ox, int oy, int kingx, int kingy, int(&board)[8][8]);
-	
+	/**
+* @brief Метод проверки на шах черного короля
+* @detailed Метод пробегается по всем фигурам соперника и проверяет не делают ли они шах королю в текущем местоположении на доске
+* @param posKingX posKingY - позиции черного короля
+* @param int(&board)[8][8] игровая доска
+* @return 1 - если нет шаха, 0 - в противном случае
+*/
 	int KingBlackSahCheck(int posKingX, int posKingY, int(&board)[8][8]);
-
+	/**
+* @brief Метод проверки хода черного короля на легальность + проверка возможности рокировки
+* @param ox oy старые позиции короля
+* @param nx ny новые позиции короля
+* @param int(&board)[8][8] игровая доска
+* @return 1 - если ход легален, 0 - в противном случае
+*/
 	int KingB(int ox, int oy, int nx, int ny, int(&board)[8][8]);
-
+	/**
+* @brief Метод нахождения короля на поле и установки его координат в переменные kingBX, kingBY
+* @param int(&board)[8][8] игровая доска
+* @return 1 - если ход легален, 0 - в противном случае
+*/
 	void pozKingBlack(int(&board)[8][8]);
 
-	int mateBlackCheck(int posKingX, int posKingY, int(&board)[8][8]);
+	//int mateBlackCheck(int posKingX, int posKingY, int(&board)[8][8]);
 
 	void SetWKFM(int value);
 

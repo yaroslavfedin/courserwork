@@ -6,30 +6,55 @@
 #include <string>
 #include "GamePiece.h"
 
+//! @brief Класс меню, регулиирования времени, сохранения данных.
 class Menu {
 public:
+	/**
+	* @brief Конструктор, который задает текстуры и их положение по умолчанию
+	*/
 	Menu();
+	/**
+	* @brief Функция переводящая время в удобный формат
+	*/
 	void FormatOutput();
+	/**
+	* @brief Функция отрисовки меню и битых фигур
+	* @param window Ссылка на окно SFMl
+	* @param board Ссылка на объект типа Board
+	*/
 	void MenuDraw(sf::RenderWindow& window, Board& board);
-
+	/**
+	* @brief Функция сохранения данных в файл
+	*/
 	void saveData(int(&board)[8][8], int& turn, sf::Time& time_dur, int& isPausePress, int& isBeatenPress, std::vector<int>& beaten, GamePiece& figure);
-
+	/**
+	* @brief Функция чтения данных из файла
+	*/
 	void ReadOut(int(&board)[8][8], int& turn, Menu& time_dur, GamePiece& figure);
-
+	/**
+	* @brief Функция сохранения выбора набора текстур
+	* @param temp Ссылка на объект типа Menu
+	*/
 	void SaveConfig(Menu& temp);
-
+	/**
+	* @brief Функция чтения выбора набора текстур
+	* @param temp Ссылка на объект типа Menu
+	*/
 	void ReadConfig(Menu& temp);
-
-	sf::Font font;
-	sf::Sprite text_timer, pause_off, pause_on, restart, beated_on, beated_off, menu, win_white, win_black;
+	
+	sf::Font font; 
+	
+	sf::Sprite text_timer, pause_off, pause_on, restart, beated_on, beated_off, menu, win_white, win_black; 
+	
 	sf::Text text_time, text_images, text_enter;
-	sf::Time time_elapsed, delta_time, zero;
+	
+	sf::Time time_elapsed, delta_time, zero; 
+	
 	sf::Clock clock;
+	
 	int fl_time;
-	sf::Texture timer, pauseoff, pauseon, res, beatedon, beatedoff, menu_, winwhite, winblack;
-
-	int isPausePressed = -1, isBeatenPressed = 1;
-
+	sf::Texture timer, pauseoff, pauseon, res, beatedon, beatedoff, menu_, winwhite, winblack; 
+	int isPausePressed = -1, isBeatenPressed = 1; 
 	int boardForRestart[8][8] =
 	{ 2, 3, 4, 5, 6, 4, 3, 2,
 	  1, 1, 1, 1, 1, 1, 1, 1,
@@ -39,11 +64,9 @@ public:
 	  0, 0, 0, 0, 0, 0, 0, 0,
 	 -1,-1,-1,-1,-1,-1,-1,-1,
 	 -2,-3,-4,-5,-6,-4,-3,-2, };
-
-	std::vector<int> beatBoard;
-	Board board;
-
-	std::string config = "images/figure";
+	std::vector<int> beatBoard; 
+	Board board; 
+	std::string config = "images/figure"; 
 	int enteringStop = 1;
 };
 

@@ -1,15 +1,43 @@
 #pragma once
 #include "Board.h"
 
-
+/**
+ @brief Класс Пешки. Содержит методы проверки 
+ * на легальность хода, так же методы проверки шаха
+*/
 class Pawn {
 public:
+	/**
+	* @brief Функция проверки белой пешки на возможный ход
+	* @param ox oy Старая позиция пешки
+	* @param nx ny Новая позиция пешки
+	* @param int(&board)[8][8] Доска
+	* @return [int] 1 - если ход сделан в соответствии с правила, 0 - в другом случае
+	*/
 	int PawnW(int ox, int oy, int nx, int ny, int(&board)[8][8]);
-
+	/**
+	* @brief Функция проверки черной пешки на возможный ход
+	* @param ox oy Старая позиция пешки
+	* @param nx ny Новая позиция пешки
+	* @param int(&board)[8][8] Доска
+	* @return [int] 1 - если ход сделан в соответствии с правила, 0 - в другом случае
+	*/
 	int PawnB(int ox, int oy, int nx, int ny, int(&board)[8][8]);
-
+	/**
+	* @brief Функция проверки белой пешки на возможный шах черному королю
+	* @param posx posy Текущая позиция пешки
+	* @param kingx kingy Текущая позиция короля
+	* @param int(&board)[8][8] Доска
+	* @return [int] 1 - если шах, 0 - в другом случае
+	*/
 	int PawnWSah(int posx, int posy, int kingx, int kingy, int(&board)[8][8]);
-
+	/**
+	* @brief Функция проверки черной пешки на возможный шах белому королю
+	* @param posx posy Текущая позиция пешки
+	* @param kingx kingy Текущая позиция короля
+	* @param int(&board)[8][8] Доска
+	* @return [int] 1 - если шах, 0 - в другом случае
+	*/
 	int PawnBSah(int posx, int posy, int kingx, int kingy, int(&board)[8][8]);
 };
 

@@ -2,6 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+/**
+* @detailed Определения цифр как шахматных фигур,
+* для простоты реализации условий 
+*/
 #define LENGTH 8
 #define PawnBlack 1
 #define PawnWhite -1
@@ -16,18 +20,34 @@
 #define KingBlack 6
 #define KingWhite -6
 
+/**
+ @brief Класс доски и загрузки текстур фигур в игру
+*/
 class Board {
+private:
+
+	sf::Texture texture[15]; ///< массив текстур фигур
+	const int size = 100; ///< переменная изначльного размера фигур
 public:
+	/**
+	* @brief Конструктор, который задает текстуры по умолчанию
+	*/
 	Board();
-
+	/**
+	* @brief Функция отрисовки текстур доски и фигур
+	* @param window Передаем ссылку на окно
+	*/
 	void Drawing(sf::RenderWindow& window);
-
+	/**
+	* @brief Функция установки текстур в соответствии с конфигурационным файлом
+	* @param enteringSt Передаем ссылку на объект определяющий паузу в игре
+	* @param temp Передаем ссылку на строку содержащую название пакета текстур
+	*/
 	void ReSetSprite(int& enteringSt, std::string& temp);
 
-	// array of sprites
-	sf::Sprite	figures[15];
-	// board
-	int board[8][8] =
+	sf::Sprite	figures[15]; ///< массив спрайтов фигур
+
+	int board[8][8] = ///< доска, положительные цифры - черные фигуры, отрицательные - белые
 	{ 2, 3, 4, 5, 6, 4, 3, 2,
 	  1, 1, 1, 1, 1, 1, 1, 1,
 	  0, 0, 0, 0, 0, 0, 0, 0,
@@ -36,9 +56,6 @@ public:
 	  0, 0, 0, 0, 0, 0, 0, 0,
 	 -1,-1,-1,-1,-1,-1,-1,-1,
 	 -2,-3,-4,-5,-6,-4,-3,-2, };
-private:
-	sf::Texture texture[15];
-	const int size = 100;
 };
 
 Board::Board() {
