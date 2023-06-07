@@ -19,6 +19,8 @@
 #define QueenBlack 5
 #define KingBlack 6
 #define KingWhite -6
+#define TransWhite -7
+#define TransBlack 7
 
 /**
  @brief Класс доски и загрузки текстур фигур в игру
@@ -84,54 +86,60 @@ void Board::Drawing(sf::RenderWindow& window) {
 		for (int j = 0; j < LENGTH; j++) {
 			if (board[i][j] != 0) {
 				if (board[i][j] == PawnBlack) {
-					figures[1].setPosition(j * size, i * size);
+					figures[1].setPosition(float(j * size), float(i * size));
 					window.draw(figures[1]);
 				}
 				if (board[i][j] == PawnWhite) {
-					figures[2].setPosition(j * size, i * size);
+					figures[2].setPosition(float(j * size), float(i * size));
 					window.draw(figures[2]);
 				}
 				if (board[i][j] == RookBlack) {
-					figures[3].setPosition(j * size, i * size);
+					figures[3].setPosition(float(j * size), float(i * size));
 					window.draw(figures[3]);
 
 				}
 				if (board[i][j] == RookWhite) {
-					figures[4].setPosition(j * size, i * size);
+					figures[4].setPosition(float(j * size), float(i * size));
 					window.draw(figures[4]);
 
 				}
 				if (board[i][j] == KnightWhite) {
-					figures[6].setPosition(j * size, i * size);
+					figures[6].setPosition(float(j * size), float(i * size));
 					window.draw(figures[6]);
 				}
 				if (board[i][j] == KnightBlack) {
-					figures[5].setPosition(j * size, i * size);
+					figures[5].setPosition(float(j * size), float(i * size));
 					window.draw(figures[5]);
 				}
 				if (board[i][j] == BishopBlack) {
-					figures[7].setPosition(j * size, i * size);
+					figures[7].setPosition(float(j * size), float(i * size));
 					window.draw(figures[7]);
 				}
 				if (board[i][j] == BishopWhite) {
-					figures[8].setPosition(j * size, i * size);
+					figures[8].setPosition(float(j * size), float(i * size));
 					window.draw(figures[8]);
 				}
 				if (board[i][j] == QueenWhite) {
-					figures[10].setPosition(j * size, i * size);
+					figures[10].setPosition(float(j * size), float(i * size));
 					window.draw(figures[10]);
 				}
 				if (board[i][j] == QueenBlack) {
-					figures[9].setPosition(j * size, i * size);
+					figures[9].setPosition(float(j * size), float(i * size));
 					window.draw(figures[9]);
 				}
 				if (board[i][j] == KingBlack) {
-					figures[11].setPosition(j * size, i * size);
+					figures[11].setPosition(float(j * size), float(i * size));
 					window.draw(figures[11]);
 				}
 				if (board[i][j] == KingWhite) {
-					figures[12].setPosition(j * size, i * size);
+					figures[12].setPosition(float(j * size), float(i * size));
 					window.draw(figures[12]);
+				}
+				if (board[i][j] == TransBlack) {
+					figures[13].setPosition(float(j * size), float(i * size));
+				}
+				if (board[i][j] == TransWhite) {
+					figures[14].setPosition(float(j * size), float(i * size));
 				}
 			}
 		}

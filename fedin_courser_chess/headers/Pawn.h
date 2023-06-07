@@ -113,6 +113,6 @@ int Pawn::PawnBSah(int posx, int posy, int kingx, int kingy, int(&board)[8][8]) 
 		if (kingy == posy + 1 && kingx == posx + 1) {
 			return 1;
 		}
-	return 0;
 	}
+	return 0;
 }

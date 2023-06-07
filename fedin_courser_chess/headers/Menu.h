@@ -152,60 +152,60 @@ void Menu::MenuDraw(sf::RenderWindow& window, Board& board) {
 		for (int i = 0; i != beatBoard.size(); i++) {
 			if (beatBoard[i] != 0) {
 				if (beatBoard[i] == PawnBlack) {
-					board.figures[1].setPosition(860 + shiftBlack * 10, 550);
+					board.figures[1].setPosition(float(830 + shiftBlack * 10), float(550));
 					window.draw(board.figures[1]);
 					shiftBlack += 1;
 				}
 				if (beatBoard[i] == PawnWhite) {
-					board.figures[2].setPosition(860 + shiftWhite * 10, 450);
+					board.figures[2].setPosition(float(830 + shiftWhite * 10), float(450));
 					window.draw(board.figures[2]);
 					shiftWhite += 1;
 				}
 				if (beatBoard[i] == RookBlack) {
 					shiftBlack += 1;
-					board.figures[3].setPosition(860 + shiftBlack * 10, 550);
+					board.figures[3].setPosition(float(830 + shiftBlack * 10), float(550));
 					window.draw(board.figures[3]);
 					shiftBlack += 2;
 				}
 				if (beatBoard[i] == RookWhite) {
 					shiftWhite += 1;
-					board.figures[4].setPosition(860 + shiftWhite * 10, 450);
+					board.figures[4].setPosition(float(830 + shiftWhite * 10), float(450));
 					window.draw(board.figures[4]);
 					shiftWhite += 2;
 				}
 				if (beatBoard[i] == KnightWhite) {
 					shiftWhite += 1;
-					board.figures[6].setPosition(860 + shiftWhite * 10, 450);
+					board.figures[6].setPosition(float(830 + shiftWhite * 10), float(450));
 					window.draw(board.figures[6]);
 					shiftWhite += 2;
 				}
 				if (beatBoard[i] == KnightBlack) {
 					shiftBlack += 1;
-					board.figures[5].setPosition(860 + shiftBlack * 10, 550);
+					board.figures[5].setPosition(float(830 + shiftBlack * 10), float(550));
 					window.draw(board.figures[5]);
 					shiftBlack += 2;
 				}
 				if (beatBoard[i] == BishopBlack) {
 					shiftBlack += 1;
-					board.figures[7].setPosition(860 + shiftBlack * 10, 550);
+					board.figures[7].setPosition(float(830 + shiftBlack * 10), float(550));
 					window.draw(board.figures[7]);
 					shiftBlack += 2;
 				}
 				if (beatBoard[i] == BishopWhite) {
 					shiftWhite += 1;
-					board.figures[8].setPosition(860 + shiftWhite * 10, 450);
+					board.figures[8].setPosition(float(830 + shiftWhite * 10), float(450));
 					window.draw(board.figures[8]);
 					shiftWhite += 2;
 				}
 				if (beatBoard[i] == QueenWhite) {
 					shiftWhite += 1;
-					board.figures[10].setPosition(860 + shiftWhite * 10, 450);
+					board.figures[10].setPosition(float(830 + shiftWhite * 10), float(450));
 					window.draw(board.figures[10]);
 					shiftWhite += 2;
 				}
 				if (beatBoard[i] == QueenBlack) {
 					shiftBlack += 1;
-					board.figures[9].setPosition(860 + shiftBlack * 10, 550);
+					board.figures[9].setPosition(float(830 + shiftBlack * 10), float(550));
 					window.draw(board.figures[9]);
 					shiftBlack += 2;
 				}
@@ -292,6 +292,11 @@ void Menu::ReadOut(int(&board)[8][8], int& turn, Menu& time_dur, GamePiece& figu
 						temp_min *= -1;
 						j++;
 					}
+					else if (temp[k] == '7') {
+						board[i][j] = -7;
+						temp_min *= -1;
+						j++;
+					}
 				}
 				else if (isdigit(temp[k])) {
 					if (temp[k] == '0') {
@@ -320,6 +325,10 @@ void Menu::ReadOut(int(&board)[8][8], int& turn, Menu& time_dur, GamePiece& figu
 					}
 					else if (temp[k] == '6') {
 						board[i][j] = 6;
+						j++;
+					}
+					else if (temp[k] == '7') {
+						board[i][j] = 7;
 						j++;
 					}
 				}

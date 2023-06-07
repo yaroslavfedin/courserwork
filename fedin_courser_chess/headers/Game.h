@@ -132,22 +132,21 @@ void Game::ProcessEvents(Vector2i pos) {
 					}
 				}
 				if (transformWhite) {
-					if (pos.y >= transWY * size && pos.y <= (transWY + 1) * size && pos.x >= transWX * size && pos.x <= (transWX + 1) * size) {
-						int xx = pos.x % 100, yy = pos.y % 100;
-						
-						if (xx < 50 && yy < 50 && xx > 0 && yy > 0) {
+					if (pos.y >= transWY * scaleY && pos.y <= (transWY + 1) * scaleY && pos.x >= transWX * scaleX && pos.x <= (transWX + 1) * scaleX) {
+						int xx = pos.x % scaleX, yy = pos.y % scaleY;
+						if (xx < scaleX/2 && yy < scaleY / 2 && xx > 0 && yy > 0) {
 							board.board[transWY][transWX] = RookWhite;
 							transformWhite = 0;
 						}
-						if (xx > 50 && xx < 100 && yy < 50 && yy > 0) {
+						if (xx > scaleX / 2 && xx < scaleX && yy < scaleY / 2 && yy > 0) {
 							board.board[transWY][transWX] = QueenWhite;
 							transformWhite = 0;
 						}
-						if (xx > 50 && xx < 100 && yy>50 && yy < 100) {
+						if (xx > scaleX / 2 && xx < scaleX && yy > scaleY / 2 && yy < scaleY) {
 							board.board[transWY][transWX] = KnightWhite;
 							transformWhite = 0;
 						}
-						if (xx < 50 && xx>0 && yy > 50 && y < 100) {
+						if (xx < scaleX / 2 && xx>0 && yy > scaleY / 2 && y < scaleY) {
 							board.board[transWY][transWX] = BishopWhite;
 							transformWhite = 0;
 						}
@@ -162,20 +161,20 @@ void Game::ProcessEvents(Vector2i pos) {
 				}
 				if (transformBlack)	{
 					if (pos.y >= transBY * size && pos.y <= (transBY + 1) * size && pos.x >= transBX * size && pos.x <= (transBX + 1) * size) {
-						int xx = pos.x % 100, yy = pos.y % 100;
-						if (xx < 50 && yy < 50 && xx > 0 && yy > 0)	{
+						int xx = pos.x % scaleX, yy = pos.y % scaleY;
+						if (xx < scaleX / 2 && yy < scaleY / 2 && xx > 0 && yy > 0)	{
 							board.board[transBY][transBX] = RookBlack;
 							transformBlack = 0;
 						}
-						if (xx > 50 && xx < 100 && yy < 50 && yy > 0) {
+						if (xx > scaleX / 2 && xx < scaleX && yy < scaleY / 2 && yy > 0) {
 							board.board[transBY][transBX] = QueenBlack;
 							transformBlack = 0;
 						}
-						if (xx > 50 && xx < 100 && yy>50 && yy < 100) {
+						if (xx > scaleX / 2 && xx < scaleX && yy > scaleY / 2 && yy < scaleY) {
 							board.board[transBY][transBX] = KnightBlack;
 							transformBlack = 0;
 						}
-						if (xx < 50 && xx>0 && yy > 50 && y < 100) {
+						if (xx < scaleX / 2 && xx>0 && yy > scaleY / 2 && y < scaleY) {
 							board.board[transBY][transBX] = BishopBlack;
 							transformBlack = 0;
 						}
@@ -189,8 +188,8 @@ void Game::ProcessEvents(Vector2i pos) {
 					}
 				}
 				if (board.board[y][x] != 0 && time.isPausePressed == 1) {
-					dx = pos.x - x * 100;
-					dy = pos.y - y * 100;
+					dx = float(pos.x - x * 100);
+					dy = float(pos.y - y * 100);
 					if (board.board[y][x] == PawnBlack && turn == 1) {
 						noMovedPiece = PawnBlack;
 						MoveImages = board.figures[1];
@@ -338,10 +337,16 @@ void Game::ProcessEvents(Vector2i pos) {
 										mateBlack = figures.mateBlackCheck(figures.kingBX, figures.kingBY, board.board);
 									}*/
 								}
-								if (noMovedPiece == KingWhite || noMovedPiece == RookWhite) {
+								if (noMovedPiece == KingWhite) {
 									figures.SetWKFM(1);
 									figures.SetRWRM(1);
 									figures.SetLWRM(1);
+								}
+								else if (noMovedPiece == RookWhite && oldPozY == 7 && oldPozX == 0) {
+									figures.SetLWRM(1);
+								}
+								else if (noMovedPiece == RookWhite && oldPozY == 7 && oldPozX == 7) {
+									figures.SetRWRM(1);
 								}
 								turn *= -1;
 								if (nr != 0) {
@@ -370,10 +375,16 @@ void Game::ProcessEvents(Vector2i pos) {
 										mateBlack = figures.mateBlackCheck(figures.kingBX, figures.kingBY, board.board);
 									}*/
 								}								
-								if (noMovedPiece == KingWhite || noMovedPiece == RookWhite) {
+								if (noMovedPiece == KingWhite) {
 									figures.SetWKFM(1);
 									figures.SetRWRM(1);
 									figures.SetLWRM(1);
+								}
+								else if (noMovedPiece == RookWhite && oldPozY == 7 && oldPozX == 0) {
+									figures.SetLWRM(1);
+								}
+								else if (noMovedPiece == RookWhite && oldPozY == 7 && oldPozX == 7) {
+									figures.SetRWRM(1);
 								}
 								turn *= -1;
 								if (nr != 0) {
@@ -405,10 +416,16 @@ void Game::ProcessEvents(Vector2i pos) {
 										mateWhite = figures.mateWhiteCheck(figures.kingWX, figures.kingWY, board.board);
 									}*/
 								}								
-								if (noMovedPiece == KingBlack || noMovedPiece == RookBlack) {
+								if (noMovedPiece == KingBlack) {
 									figures.SetBKFM(1);
 									figures.SetRBRM(1);
 									figures.SetLBRM(1);
+								}
+								else if (noMovedPiece == RookBlack && oldPozY == 0 && oldPozX == 0) {
+									figures.SetLBRM(1);
+								}
+								else if (noMovedPiece == RookBlack && oldPozY == 0 && oldPozX == 7) {
+									figures.SetRBRM(1);
 								}
 								turn *= -1;
 								if (nr != 0) {
@@ -437,10 +454,16 @@ void Game::ProcessEvents(Vector2i pos) {
 										mateWhite = figures.mateWhiteCheck(figures.kingWX, figures.kingWY, board.board);
 									}*/
 								}
-								if (noMovedPiece == KingBlack || noMovedPiece == RookBlack) {
+								if (noMovedPiece == KingBlack) {
 									figures.SetBKFM(1);
 									figures.SetRBRM(1);
 									figures.SetLBRM(1);
+								}
+								else if (noMovedPiece == RookBlack && oldPozY == 0 && oldPozX == 0) {
+									figures.SetLBRM(1);
+								}
+								else if (noMovedPiece == RookBlack && oldPozY == 0 && oldPozX == 7) {
+									figures.SetRBRM(1);
 								}
 								turn *= -1;
 								if (nr != 0) {
@@ -471,11 +494,11 @@ void Game::Render(Vector2i pos) {
 			window.draw(MoveImages);
 		}
 		if (transformBlack) {
-			board.figures[13].setPosition(transBX * size, transBY * size);
+			board.figures[13].setPosition(float(transBX * size), float(transBY * size));
 			window.draw(board.figures[13]);
 		}
 		if (transformWhite) {
-			board.figures[14].setPosition(transWX * size, transWY * size);
+			board.figures[14].setPosition(float(transWX * size), float(transWY * size));
 			window.draw(board.figures[14]);
 		}
 		time.MenuDraw(window, board);
